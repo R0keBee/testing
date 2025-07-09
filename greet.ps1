@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show("idiot!", "Greeting")
 # Set the path to the script or executable
 $regName = "MyStartupScript"
-$scriptPath = "$env:USERPROFILE\Downloads\greet.ps1"
+$scriptPath = "$env:USERPROFILE\Desktop\greet.ps1"
 
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
                  -Name $regName `
